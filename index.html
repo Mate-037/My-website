@@ -1,0 +1,1315 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dorine | Personal Portfolio & Tech Journey</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            accent: '#8b5cf6',
+                            emerald: '#10b981'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Custom CSS Styles -->
+    <style>
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(15, 23, 42, 0.6);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #0ea5e9;
+            border-radius: 5px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #0284c7;
+        }
+        
+        /* Glassmorphism Styles */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .dark .glass-card {
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+        .dark .glass-nav {
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+
+        /* Pulse glow animation */
+        @keyframes pulseGlow {
+            0%, 100% { opacity: 0.4; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.05); }
+        }
+        .animate-glow {
+            animation: pulseGlow 6s infinite ease-in-out;
+        }
+
+        /* Gradient Text */
+        .text-gradient {
+            background: linear-gradient(135deg, #0ea5e9 0%, #8b5cf6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .text-gradient-green {
+            background: linear-gradient(135deg, #10b981 0%, #0ea5e9 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 font-sans transition-colors duration-300 relative overflow-x-hidden">
+
+    <!-- Page Loader -->
+    <div id="loader" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-slate-950 text-white transition-opacity duration-500">
+        <div class="relative flex items-center justify-center mb-4">
+            <div class="w-16 h-16 border-4 border-sky-500/30 border-t-sky-500 rounded-full animate-spin"></div>
+            <span class="absolute text-xl font-bold text-sky-400">D</span>
+        </div>
+        <p class="text-sm font-medium tracking-widest text-slate-400 uppercase">Loading Dorine's Portfolio...</p>
+    </div>
+
+    <!-- Navigation Bar -->
+    <header class="fixed top-0 left-0 w-full z-40 transition-all duration-300 border-b border-slate-200/50 dark:border-slate-800/50 glass-nav">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#home" class="flex items-center space-x-2 group">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-sky-500 to-violet-600 flex items-center justify-center text-white font-extrabold text-xl shadow-lg shadow-sky-500/20 group-hover:scale-105 transition-transform">
+                    D
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-xl font-bold tracking-tight text-slate-900 dark:text-white">Dorine<span class="text-sky-500">.</span></span>
+                    <span class="text-[10px] text-slate-500 dark:text-slate-400 font-semibold tracking-wider uppercase">Future Engineer</span>
+                </div>
+            </a>
+
+            <!-- Desktop Links -->
+            <nav class="hidden lg:flex items-center space-x-1 xl:space-x-2 text-xs xl:text-sm font-medium text-slate-600 dark:text-slate-300">
+                <a href="#about" class="px-3 py-2 rounded-lg hover:text-sky-500 dark:hover:text-sky-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">About</a>
+                <a href="#education" class="px-3 py-2 rounded-lg hover:text-sky-500 dark:hover:text-sky-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">Education</a>
+                <a href="#tech-journey" class="px-3 py-2 rounded-lg hover:text-sky-500 dark:hover:text-sky-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">Tech Journey</a>
+                <a href="#programming" class="px-3 py-2 rounded-lg hover:text-sky-500 dark:hover:text-sky-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">Programming</a>
+                <a href="#projects" class="px-3 py-2 rounded-lg hover:text-sky-500 dark:hover:text-sky-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">Projects</a>
+                <a href="#hobbies" class="px-3 py-2 rounded-lg hover:text-sky-500 dark:hover:text-sky-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">Hobbies</a>
+                <a href="#agriculture" class="px-3 py-2 rounded-lg hover:text-sky-500 dark:hover:text-sky-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">AgriTech</a>
+                <a href="#faith" class="px-3 py-2 rounded-lg hover:text-sky-500 dark:hover:text-sky-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">Faith</a>
+                <a href="#goals" class="px-3 py-2 rounded-lg hover:text-sky-500 dark:hover:text-sky-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">Goals</a>
+                <a href="#contact" class="px-3 py-2 rounded-lg bg-sky-500 hover:bg-sky-600 text-white font-semibold transition-colors shadow-md shadow-sky-500/20">Contact</a>
+            </nav>
+
+            <!-- Actions Right -->
+            <div class="flex items-center space-x-3">
+                <!-- Dark Mode Toggle Button -->
+                <button id="themeToggle" aria-label="Toggle Dark Mode" class="p-2.5 rounded-xl bg-slate-200/80 dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:ring-2 ring-sky-500 transition-all">
+                    <i data-lucide="moon" class="w-5 h-5 hidden dark:block"></i>
+                    <i data-lucide="sun" class="w-5 h-5 block dark:hidden"></i>
+                </button>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobileMenuBtn" aria-label="Toggle Navigation Menu" class="lg:hidden p-2.5 rounded-xl bg-slate-200/80 dark:bg-slate-800 text-slate-700 dark:text-slate-200">
+                    <i data-lucide="menu" id="menuIcon" class="w-6 h-6"></i>
+                    <i data-lucide="x" id="closeIcon" class="w-6 h-6 hidden"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobileMenu" class="hidden lg:hidden border-b border-slate-200 dark:border-slate-800 bg-white/95 dark:bg-slate-900/95 px-4 pt-2 pb-6 space-y-2">
+            <a href="#about" class="mobile-link block px-4 py-2.5 rounded-lg font-medium text-slate-700 dark:text-slate-200 hover:bg-sky-50 dark:hover:bg-slate-800">About</a>
+            <a href="#education" class="mobile-link block px-4 py-2.5 rounded-lg font-medium text-slate-700 dark:text-slate-200 hover:bg-sky-50 dark:hover:bg-slate-800">Education</a>
+            <a href="#tech-journey" class="mobile-link block px-4 py-2.5 rounded-lg font-medium text-slate-700 dark:text-slate-200 hover:bg-sky-50 dark:hover:bg-slate-800">Tech Journey</a>
+            <a href="#programming" class="mobile-link block px-4 py-2.5 rounded-lg font-medium text-slate-700 dark:text-slate-200 hover:bg-sky-50 dark:hover:bg-slate-800">Programming</a>
+            <a href="#projects" class="mobile-link block px-4 py-2.5 rounded-lg font-medium text-slate-700 dark:text-slate-200 hover:bg-sky-50 dark:hover:bg-slate-800">Projects</a>
+            <a href="#hobbies" class="mobile-link block px-4 py-2.5 rounded-lg font-medium text-slate-700 dark:text-slate-200 hover:bg-sky-50 dark:hover:bg-slate-800">Hobbies</a>
+            <a href="#agriculture" class="mobile-link block px-4 py-2.5 rounded-lg font-medium text-slate-700 dark:text-slate-200 hover:bg-sky-50 dark:hover:bg-slate-800">AgriTech</a>
+            <a href="#faith" class="mobile-link block px-4 py-2.5 rounded-lg font-medium text-slate-700 dark:text-slate-200 hover:bg-sky-50 dark:hover:bg-slate-800">Faith</a>
+            <a href="#goals" class="mobile-link block px-4 py-2.5 rounded-lg font-medium text-slate-700 dark:text-slate-200 hover:bg-sky-50 dark:hover:bg-slate-800">Goals</a>
+            <a href="#contact" class="mobile-link block px-4 py-2.5 rounded-lg font-medium text-center bg-sky-500 text-white">Contact Me</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative min-h-screen pt-28 pb-16 flex items-center justify-center overflow-hidden">
+        <!-- Background Canvas for Circuit Particles -->
+        <canvas id="techCanvas" class="absolute inset-0 w-full h-full opacity-40 dark:opacity-30 pointer-events-none"></canvas>
+        
+        <!-- Glowing Light Orbs -->
+        <div class="absolute top-1/4 left-10 w-72 h-72 bg-sky-500/20 dark:bg-sky-500/10 rounded-full blur-3xl animate-glow pointer-events-none"></div>
+        <div class="absolute bottom-10 right-10 w-96 h-96 bg-violet-500/20 dark:bg-violet-500/10 rounded-full blur-3xl animate-glow pointer-events-none" style="animation-delay: 2s;"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <!-- Hero Left Text Content -->
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-sky-100 dark:bg-sky-950/80 border border-sky-300 dark:border-sky-800 text-sky-700 dark:text-sky-300 text-xs sm:text-sm font-semibold tracking-wide">
+                        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                        <span>Kenya 🇰🇪 • University Tech Student</span>
+                    </div>
+
+                    <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight leading-tight">
+                        Hi, I'm <span class="text-gradient">Dorine</span> 👋
+                    </h1>
+
+                    <p class="text-xl sm:text-2xl font-medium text-slate-700 dark:text-slate-300">
+                        University Student | Technology Enthusiast | Programmer | Future Engineer
+                    </p>
+
+                    <!-- Quote Box -->
+                    <div class="p-4 sm:p-6 rounded-2xl glass-card border-l-4 border-l-sky-500 text-slate-600 dark:text-slate-300 italic text-base sm:text-lg shadow-sm">
+                        “Learning technology, building simple projects, exploring new ideas, and preparing for the future.”
+                    </div>
+
+                    <!-- CTA Action Buttons -->
+                    <div class="pt-2 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+                        <a href="#tech-journey" class="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-gradient-to-r from-sky-500 to-violet-600 hover:from-sky-600 hover:to-violet-700 text-white font-semibold text-center shadow-lg shadow-sky-500/25 transition-all transform hover:-translate-y-0.5 flex items-center justify-center space-x-2">
+                            <span>Explore My Journey</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </a>
+                        <a href="#contact" class="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-slate-200/80 dark:bg-slate-800/80 hover:bg-slate-300 dark:hover:bg-slate-700 text-slate-800 dark:text-white font-semibold text-center border border-slate-300 dark:border-slate-700 transition-all flex items-center justify-center space-x-2">
+                            <span>Contact Me</span>
+                            <i data-lucide="mail" class="w-4 h-4"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Hero Right Photo Area -->
+                <div class="lg:col-span-5 flex justify-center">
+                    <div class="relative group max-w-sm w-full">
+                        <!-- Decorative Frame Gradient Backing -->
+                        <div class="absolute -inset-1.5 bg-gradient-to-r from-sky-500 via-violet-500 to-emerald-500 rounded-3xl blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-tilt"></div>
+                        
+                        <div class="relative rounded-3xl overflow-hidden glass-card p-3 bg-white dark:bg-slate-900 shadow-2xl">
+                            <!-- Image Frame Placeholder (Easily Customizable) -->
+                            <div class="relative aspect-[4/5] rounded-2xl overflow-hidden bg-slate-800 flex items-center justify-center group">
+                                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=800&auto=format&fit=crop" 
+                                     alt="Dorine - Student & Tech Enthusiast" 
+                                     class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                                     onerror="this.src='https://placehold.co/600x750/0f172a/0ea5e9?text=Dorine+Photo';">
+                                
+                                <!-- Dark Overlay gradient for badge legibility -->
+                                <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
+
+                                <!-- Floating Badge Top Right -->
+                                <div class="absolute top-4 right-4 bg-slate-900/80 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/20 text-xs text-white font-medium flex items-center space-x-1.5 shadow-lg">
+                                    <i data-lucide="cpu" class="w-3.5 h-3.5 text-sky-400"></i>
+                                    <span>Microprocessor Tech</span>
+                                </div>
+
+                                <!-- Bottom Frame Info -->
+                                <div class="absolute bottom-4 left-4 right-4 text-white">
+                                    <p class="font-bold text-lg">Dorine</p>
+                                    <p class="text-xs text-slate-300 flex items-center space-x-1">
+                                        <i data-lucide="map-pin" class="w-3 h-3 text-emerald-400"></i>
+                                        <span>Kenya</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Me Section -->
+    <section id="about" class="py-20 relative bg-slate-100/50 dark:bg-slate-900/40 border-y border-slate-200 dark:border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight mb-4">
+                    About <span class="text-gradient">Me</span>
+                </h2>
+                <div class="w-20 h-1.5 bg-sky-500 mx-auto rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                <!-- Text Intro -->
+                <div class="lg:col-span-6 space-y-5 text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+                    <p class="bg-white dark:bg-slate-900 p-6 rounded-2xl glass-card shadow-sm">
+                        “I’m Dorine, a university student from Kenya with a strong interest in technology, programming, engineering, and continuous learning. I enjoy discovering how technology works, experimenting with simple programming projects, and keeping up with new developments in the technology world.”
+                    </p>
+                    <p class="px-2">
+                        I enjoy learning both theoretical concepts and practical skills. Whether studying hardware circuits or writing lines of Python code, my goal is to build a solid foundation in electronics, control systems, and computational problem-solving.
+                    </p>
+                </div>
+
+                <!-- Quick Facts Grid -->
+                <div class="lg:col-span-6">
+                    <h3 class="text-xl font-bold mb-6 text-slate-900 dark:text-white flex items-center space-x-2">
+                        <i data-lucide="user-check" class="text-sky-500"></i>
+                        <span>Quick Facts</span>
+                    </h3>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="p-5 rounded-2xl glass-card hover:border-sky-500/50 transition-all">
+                            <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider block mb-1">Name</span>
+                            <span class="text-lg font-bold text-slate-800 dark:text-white">Dorine</span>
+                        </div>
+
+                        <div class="p-5 rounded-2xl glass-card hover:border-sky-500/50 transition-all">
+                            <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider block mb-1">Country</span>
+                            <span class="text-lg font-bold text-slate-800 dark:text-white flex items-center space-x-2">
+                                <span>Kenya</span>
+                                <span class="text-xl">🇰🇪</span>
+                            </span>
+                        </div>
+
+                        <div class="p-5 rounded-2xl glass-card hover:border-sky-500/50 transition-all sm:col-span-2">
+                            <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider block mb-1">Occupation</span>
+                            <span class="text-lg font-bold text-slate-800 dark:text-white">University Student</span>
+                        </div>
+
+                        <div class="p-5 rounded-2xl glass-card hover:border-sky-500/50 transition-all sm:col-span-2">
+                            <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider block mb-1">Field of Study</span>
+                            <span class="text-base sm:text-lg font-bold text-sky-600 dark:text-sky-400">Microprocessor Technology, Control and Instrumentation</span>
+                        </div>
+
+                        <div class="p-5 rounded-2xl glass-card hover:border-sky-500/50 transition-all sm:col-span-2">
+                            <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider block mb-1">Key Interests</span>
+                            <span class="text-sm sm:text-base font-semibold text-slate-700 dark:text-slate-200">Programming, Technology, Engineering and Learning</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="py-20 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-violet-100 dark:bg-violet-950/60 text-violet-600 dark:text-violet-300 text-xs font-semibold mb-3">
+                    <i data-lucide="graduation-cap" class="w-4 h-4"></i>
+                    <span>Academic Path</span>
+                </div>
+                <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight">
+                    My <span class="text-gradient">Education</span>
+                </h2>
+            </div>
+
+            <div class="max-w-4xl mx-auto">
+                <div class="relative border-l-2 border-sky-500/30 dark:border-sky-500/20 pl-6 sm:pl-10 space-y-12">
+                    
+                    <!-- University Main Card -->
+                    <div class="relative group">
+                        <!-- Timeline Node Dot -->
+                        <div class="absolute -left-[31px] sm:-left-[47px] top-1.5 w-6 h-6 rounded-full bg-sky-500 border-4 border-slate-50 dark:border-slate-950 shadow-md group-hover:scale-125 transition-transform"></div>
+
+                        <div class="p-6 sm:p-8 rounded-3xl glass-card shadow-lg hover:border-sky-500/50 transition-all">
+                            <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+                                <span class="px-3 py-1 rounded-full bg-sky-500/10 text-sky-600 dark:text-sky-400 font-semibold text-xs uppercase tracking-wider">
+                                    Higher Education
+                                </span>
+                                <span class="text-xs font-medium text-slate-500 dark:text-slate-400 bg-slate-200/60 dark:bg-slate-800 px-3 py-1 rounded-lg">
+                                    Status: Currently Pursuing
+                                </span>
+                            </div>
+
+                            <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-2">
+                                Microprocessor Technology, Control and Instrumentation
+                            </h3>
+
+                            <p class="text-slate-600 dark:text-slate-300 text-sm sm:text-base mb-6 leading-relaxed">
+                                Pursuing comprehensive studies focusing on modern electronics, microprocessors, digital logic, control loop systems, instrumentation sensors, and computer programming.
+                            </p>
+
+                            <!-- Focus Areas Badges -->
+                            <div class="mb-6">
+                                <h4 class="text-xs font-semibold uppercase text-slate-400 tracking-wider mb-3">Key Focus Areas:</h4>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="px-3 py-1 rounded-lg bg-slate-200/70 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs font-medium">Microprocessors</span>
+                                    <span class="px-3 py-1 rounded-lg bg-slate-200/70 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs font-medium">Digital Technology</span>
+                                    <span class="px-3 py-1 rounded-lg bg-slate-200/70 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs font-medium">Control Systems</span>
+                                    <span class="px-3 py-1 rounded-lg bg-slate-200/70 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs font-medium">Instrumentation</span>
+                                    <span class="px-3 py-1 rounded-lg bg-slate-200/70 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs font-medium">Electronics</span>
+                                    <span class="px-3 py-1 rounded-lg bg-slate-200/70 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs font-medium">Programming</span>
+                                </div>
+                            </div>
+
+                            <!-- Editable Placeholders Box -->
+                            <div class="bg-slate-100/80 dark:bg-slate-900/80 p-4 sm:p-5 rounded-2xl border border-dashed border-sky-400/40 text-xs sm:text-sm space-y-2">
+                                <div class="font-bold text-sky-600 dark:text-sky-400 flex items-center space-x-1.5 mb-1">
+                                    <i data-lucide="edit-3" class="w-4 h-4"></i>
+                                    <span>Academic Details (Editable Placeholders):</span>
+                                </div>
+                                <p class="text-slate-700 dark:text-slate-300"><strong>University:</strong> <span class="bg-amber-100 dark:bg-amber-950/60 px-2 py-0.5 rounded text-amber-800 dark:text-amber-300">[Add University Name]</span></p>
+                                <p class="text-slate-700 dark:text-slate-300"><strong>Course:</strong> Microprocessor Technology, Control and Instrumentation</p>
+                                <p class="text-slate-700 dark:text-slate-300"><strong>Year of Study:</strong> <span class="bg-amber-100 dark:bg-amber-950/60 px-2 py-0.5 rounded text-amber-800 dark:text-amber-300">[Add Year of Study]</span></p>
+                                <p class="text-slate-700 dark:text-slate-300"><strong>Expected Graduation:</strong> <span class="bg-amber-100 dark:bg-amber-950/60 px-2 py-0.5 rounded text-amber-800 dark:text-amber-300">[Add Year]</span></p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- My Technology Journey -->
+    <section id="tech-journey" class="py-20 bg-slate-100/50 dark:bg-slate-900/40 border-y border-slate-200 dark:border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight mb-4">
+                    My Technology Journey 💻⚙️
+                </h2>
+                <p class="text-slate-600 dark:text-slate-300">
+                    Exploring key technological pillars that shape my academic journey and technical interests.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Card 1: Programming -->
+                <div class="p-6 rounded-3xl glass-card hover:-translate-y-1.5 transition-all duration-300 shadow-md group">
+                    <div class="w-12 h-12 rounded-2xl bg-sky-500/10 text-sky-500 flex items-center justify-center mb-5 group-hover:bg-sky-500 group-hover:text-white transition-colors">
+                        <i data-lucide="code-2" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2 flex items-center space-x-2">
+                        <span>💻 Programming</span>
+                    </h3>
+                    <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
+                        I enjoy learning programming and creating simple projects that help me understand how software works and solves problems effectively.
+                    </p>
+                </div>
+
+                <!-- Card 2: Microprocessors -->
+                <div class="p-6 rounded-3xl glass-card hover:-translate-y-1.5 transition-all duration-300 shadow-md group">
+                    <div class="w-12 h-12 rounded-2xl bg-violet-500/10 text-violet-500 flex items-center justify-center mb-5 group-hover:bg-violet-500 group-hover:text-white transition-colors">
+                        <i data-lucide="cpu" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2 flex items-center space-x-2">
+                        <span>⚙️ Microprocessors</span>
+                    </h3>
+                    <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
+                        I am developing my understanding of microprocessors and how they are used in computing architecture, technology, and electronic systems.
+                    </p>
+                </div>
+
+                <!-- Card 3: Control Systems -->
+                <div class="p-6 rounded-3xl glass-card hover:-translate-y-1.5 transition-all duration-300 shadow-md group">
+                    <div class="w-12 h-12 rounded-2xl bg-emerald-500/10 text-emerald-500 flex items-center justify-center mb-5 group-hover:bg-emerald-500 group-hover:text-white transition-colors">
+                        <i data-lucide="sliders" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2 flex items-center space-x-2">
+                        <span>🎛️ Control Systems</span>
+                    </h3>
+                    <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
+                        I am learning about control systems and how feedback loops enable different automated systems to be monitored and precisely controlled.
+                    </p>
+                </div>
+
+                <!-- Card 4: Instrumentation -->
+                <div class="p-6 rounded-3xl glass-card hover:-translate-y-1.5 transition-all duration-300 shadow-md group">
+                    <div class="w-12 h-12 rounded-2xl bg-amber-500/10 text-amber-500 flex items-center justify-center mb-5 group-hover:bg-amber-500 group-hover:text-white transition-colors">
+                        <i data-lucide="gauge" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2 flex items-center space-x-2">
+                        <span>🔬 Instrumentation</span>
+                    </h3>
+                    <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
+                        I am exploring instrumentation and how sensors, precise measurements, and electronic systems are used in practical real-world applications.
+                    </p>
+                </div>
+
+                <!-- Card 5: Electronics -->
+                <div class="p-6 rounded-3xl glass-card hover:-translate-y-1.5 transition-all duration-300 shadow-md group md:col-span-2 lg:col-span-1">
+                    <div class="w-12 h-12 rounded-2xl bg-rose-500/10 text-rose-500 flex items-center justify-center mb-5 group-hover:bg-rose-500 group-hover:text-white transition-colors">
+                        <i data-lucide="zap" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2 flex items-center space-x-2">
+                        <span>🔌 Electronics</span>
+                    </h3>
+                    <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
+                        I am interested in understanding the connection between electronic components, circuit designs, processors, and modern embedded technology.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Programming Section -->
+    <section id="programming" class="py-20 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight mb-4">
+                    My Programming Journey 👩‍💻
+                </h2>
+                <p class="text-slate-600 dark:text-slate-300 text-base sm:text-lg">
+                    “I enjoy programming simple projects as a hobby and as a way of improving my problem-solving skills.”
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Python Skill Card -->
+                <div class="p-8 rounded-3xl glass-card shadow-lg border-t-4 border-t-sky-500 hover:shadow-xl transition-all">
+                    <div class="flex items-center justify-between mb-6">
+                        <div class="flex items-center space-x-3">
+                            <div class="p-3 bg-sky-500/10 rounded-2xl text-sky-500">
+                                <i data-lucide="terminal" class="w-8 h-8"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold text-slate-900 dark:text-white">Python</h3>
+                                <span class="text-xs font-semibold text-sky-500">Actively Learning & Building</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p class="text-slate-600 dark:text-slate-300 text-sm mb-6 leading-relaxed">
+                        Python is my primary tool for understanding software logic, creating utilities, and exploring data processing.
+                    </p>
+
+                    <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">Topics & Concepts Covered:</h4>
+                    <ul class="grid grid-cols-2 gap-2 text-xs sm:text-sm text-slate-700 dark:text-slate-300">
+                        <li class="flex items-center space-x-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-sky-500"></i><span>Variables & Types</span></li>
+                        <li class="flex items-center space-x-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-sky-500"></i><span>Conditions & Logic</span></li>
+                        <li class="flex items-center space-x-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-sky-500"></i><span>Loops & Iteration</span></li>
+                        <li class="flex items-center space-x-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-sky-500"></i><span>Functions & Modules</span></li>
+                        <li class="flex items-center space-x-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-sky-500"></i><span>Lists & Dictionaries</span></li>
+                        <li class="flex items-center space-x-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-sky-500"></i><span>QR Code Projects</span></li>
+                        <li class="flex items-center space-x-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-sky-500"></i><span>Data Processing</span></li>
+                        <li class="flex items-center space-x-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-sky-500"></i><span>Beginner Apps</span></li>
+                    </ul>
+                </div>
+
+                <!-- Rust Skill Card -->
+                <div class="p-8 rounded-3xl glass-card shadow-lg border-t-4 border-t-amber-500 hover:shadow-xl transition-all">
+                    <div class="flex items-center justify-between mb-6">
+                        <div class="flex items-center space-x-3">
+                            <div class="p-3 bg-amber-500/10 rounded-2xl text-amber-500">
+                                <i data-lucide="box" class="w-8 h-8"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold text-slate-900 dark:text-white">Rust</h3>
+                                <span class="text-xs font-semibold text-amber-500">Exploring Fundamentals</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p class="text-slate-600 dark:text-slate-300 text-sm mb-6 leading-relaxed">
+                        Exploring Rust to gain insight into memory management, safety, performance, and low-level system concepts.
+                    </p>
+
+                    <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">Topics & Concepts Covered:</h4>
+                    <ul class="grid grid-cols-2 gap-2 text-xs sm:text-sm text-slate-700 dark:text-slate-300">
+                        <li class="flex items-center space-x-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-amber-500"></i><span>Basic Syntax</span></li>
+                        <li class="flex items-center space-x-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-amber-500"></i><span>Variables & Mutability</span></li>
+                        <li class="flex items-center space-x-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-amber-500"></i><span>Functions</span></li>
+                        <li class="flex items-center space-x-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-amber-500"></i><span>Ownership Concepts</span></li>
+                        <li class="flex items-center space-x-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-amber-500"></i><span>CLI Programs</span></li>
+                        <li class="flex items-center space-x-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-amber-500"></i><span>Simple Projects</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- My Hobbies Section -->
+    <section id="hobbies" class="py-20 bg-slate-100/50 dark:bg-slate-900/40 border-y border-slate-200 dark:border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight mb-4">
+                    My Hobbies ❤️
+                </h2>
+                <p class="text-slate-600 dark:text-slate-300">
+                    Activities I enjoy during my free time that keep me inspired and learning.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Hobby 1 -->
+                <div class="p-6 rounded-3xl glass-card hover:-translate-y-2 transition-all duration-300 text-center flex flex-col items-center">
+                    <div class="w-16 h-16 rounded-2xl bg-sky-500/10 text-sky-500 flex items-center justify-center mb-4 text-2xl">
+                        👩‍💻
+                    </div>
+                    <h3 class="font-bold text-lg text-slate-900 dark:text-white mb-2">Programming Projects</h3>
+                    <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                        Creating small programming projects that allow me to practice what I learn and experiment with new ideas.
+                    </p>
+                </div>
+
+                <!-- Hobby 2 -->
+                <div class="p-6 rounded-3xl glass-card hover:-translate-y-2 transition-all duration-300 text-center flex flex-col items-center">
+                    <div class="w-16 h-16 rounded-2xl bg-violet-500/10 text-violet-500 flex items-center justify-center mb-4 text-2xl">
+                        📱
+                    </div>
+                    <h3 class="font-bold text-lg text-slate-900 dark:text-white mb-2">Tech Content</h3>
+                    <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                        Watching and learning about technology, new gadgets, programming, computers, electronics, and emerging tech.
+                    </p>
+                </div>
+
+                <!-- Hobby 3 -->
+                <div class="p-6 rounded-3xl glass-card hover:-translate-y-2 transition-all duration-300 text-center flex flex-col items-center">
+                    <div class="w-16 h-16 rounded-2xl bg-emerald-500/10 text-emerald-500 flex items-center justify-center mb-4 text-2xl">
+                        🔎
+                    </div>
+                    <h3 class="font-bold text-lg text-slate-900 dark:text-white mb-2">Exploring New Tech</h3>
+                    <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                        Discovering how new technologies work and staying informed about recent innovations in the tech world.
+                    </p>
+                </div>
+
+                <!-- Hobby 4 -->
+                <div class="p-6 rounded-3xl glass-card hover:-translate-y-2 transition-all duration-300 text-center flex flex-col items-center">
+                    <div class="w-16 h-16 rounded-2xl bg-amber-500/10 text-amber-500 flex items-center justify-center mb-4 text-2xl">
+                        📚
+                    </div>
+                    <h3 class="font-bold text-lg text-slate-900 dark:text-white mb-2">Continuous Learning</h3>
+                    <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                        Reading documentation, exploring academic topics, and continuously improving my technical skills.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight mb-4">
+                    Projects I've Worked On 🚀
+                </h2>
+                <p class="text-slate-600 dark:text-slate-300">
+                    A showcase of beginner programming projects and practical software experiments.
+                </p>
+            </div>
+
+            <!-- Project Filters -->
+            <div class="flex flex-wrap justify-center gap-2 mb-10">
+                <button class="filter-btn active px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-sky-500 text-white shadow-md shadow-sky-500/20 transition-all" data-filter="all">All Projects</button>
+                <button class="filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-sky-500 hover:text-white transition-all" data-filter="python">Python</button>
+                <button class="filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-sky-500 hover:text-white transition-all" data-filter="systems">Systems</button>
+            </div>
+
+            <!-- Projects Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1 -->
+                <div class="project-card python glass-card rounded-3xl overflow-hidden shadow-lg flex flex-col hover:-translate-y-1.5 transition-all duration-300">
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="px-2.5 py-1 rounded-md bg-sky-500/10 text-sky-500 text-xs font-bold">Python</span>
+                                <i data-lucide="qr-code" class="w-5 h-5 text-slate-400"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">QR Code Generator</h3>
+                            <p class="text-slate-600 dark:text-slate-300 text-sm mb-4 leading-relaxed">
+                                A programming project exploring QR code generation, encoding data into matrices, and digital information storage.
+                            </p>
+                        </div>
+                        <div>
+                            <div class="flex flex-wrap gap-1.5 mb-6">
+                                <span class="px-2 py-0.5 bg-slate-200/60 dark:bg-slate-800 text-slate-600 dark:text-slate-400 text-[11px] rounded font-medium">Python</span>
+                                <span class="px-2 py-0.5 bg-slate-200/60 dark:bg-slate-800 text-slate-600 dark:text-slate-400 text-[11px] rounded font-medium">QRCode Library</span>
+                            </div>
+                            <div class="flex items-center justify-between pt-4 border-t border-slate-200 dark:border-slate-800">
+                                <button onclick="openModal('QR Code Generator', 'A Python utility that converts text, URLs, and numeric data into scannable QR code images.')" class="text-xs font-semibold text-sky-500 hover:underline flex items-center space-x-1">
+                                    <span>View Details</span>
+                                    <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+                                </button>
+                                <span class="text-xs text-slate-400 italic">[GitHub Link]</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project-card python systems glass-card rounded-3xl overflow-hidden shadow-lg flex flex-col hover:-translate-y-1.5 transition-all duration-300">
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="px-2.5 py-1 rounded-md bg-violet-500/10 text-violet-500 text-xs font-bold">System / Python</span>
+                                <i data-lucide="users" class="w-5 h-5 text-slate-400"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">Student Management System</h3>
+                            <p class="text-slate-600 dark:text-slate-300 text-sm mb-4 leading-relaxed">
+                                A Python project for managing student records, teachers, classes, and assignment tracking.
+                            </p>
+                        </div>
+                        <div>
+                            <div class="flex flex-wrap gap-1.5 mb-6">
+                                <span class="px-2 py-0.5 bg-slate-200/60 dark:bg-slate-800 text-slate-600 dark:text-slate-400 text-[11px] rounded font-medium">Python</span>
+                                <span class="px-2 py-0.5 bg-slate-200/60 dark:bg-slate-800 text-slate-600 dark:text-slate-400 text-[11px] rounded font-medium">Data Structures</span>
+                            </div>
+                            <div class="flex items-center justify-between pt-4 border-t border-slate-200 dark:border-slate-800">
+                                <button onclick="openModal('Student Management System', 'Designed to handle CRUD operations for student records using dictionaries and list data structures.')" class="text-xs font-semibold text-sky-500 hover:underline flex items-center space-x-1">
+                                    <span>View Details</span>
+                                    <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+                                </button>
+                                <span class="text-xs text-slate-400 italic">[GitHub Link]</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="project-card python glass-card rounded-3xl overflow-hidden shadow-lg flex flex-col hover:-translate-y-1.5 transition-all duration-300">
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="px-2.5 py-1 rounded-md bg-sky-500/10 text-sky-500 text-xs font-bold">Python</span>
+                                <i data-lucide="dollar-sign" class="w-5 h-5 text-slate-400"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">Currency Converter</h3>
+                            <p class="text-slate-600 dark:text-slate-300 text-sm mb-4 leading-relaxed">
+                                A beginner programming project for converting currencies using standard conversion rates and math functions.
+                            </p>
+                        </div>
+                        <div>
+                            <div class="flex flex-wrap gap-1.5 mb-6">
+                                <span class="px-2 py-0.5 bg-slate-200/60 dark:bg-slate-800 text-slate-600 dark:text-slate-400 text-[11px] rounded font-medium">Python</span>
+                                <span class="px-2 py-0.5 bg-slate-200/60 dark:bg-slate-800 text-slate-600 dark:text-slate-400 text-[11px] rounded font-medium">API / Math</span>
+                            </div>
+                            <div class="flex items-center justify-between pt-4 border-t border-slate-200 dark:border-slate-800">
+                                <button onclick="openModal('Currency Converter', 'Console / Simple GUI program for exchanging currencies like KES, USD, EUR.')" class="text-xs font-semibold text-sky-500 hover:underline flex items-center space-x-1">
+                                    <span>View Details</span>
+                                    <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+                                </button>
+                                <span class="text-xs text-slate-400 italic">[GitHub Link]</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 4 -->
+                <div class="project-card python glass-card rounded-3xl overflow-hidden shadow-lg flex flex-col hover:-translate-y-1.5 transition-all duration-300">
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="px-2.5 py-1 rounded-md bg-emerald-500/10 text-emerald-500 text-xs font-bold">Analysis</span>
+                                <i data-lucide="bar-chart-2" class="w-5 h-5 text-slate-400"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">Student Analysis</h3>
+                            <p class="text-slate-600 dark:text-slate-300 text-sm mb-4 leading-relaxed">
+                                A project involving marks analysis, calculating grade averages, and generating ranking statistics.
+                            </p>
+                        </div>
+                        <div>
+                            <div class="flex flex-wrap gap-1.5 mb-6">
+                                <span class="px-2 py-0.5 bg-slate-200/60 dark:bg-slate-800 text-slate-600 dark:text-slate-400 text-[11px] rounded font-medium">Python</span>
+                                <span class="px-2 py-0.5 bg-slate-200/60 dark:bg-slate-800 text-slate-600 dark:text-slate-400 text-[11px] rounded font-medium">Data Analysis</span>
+                            </div>
+                            <div class="flex items-center justify-between pt-4 border-t border-slate-200 dark:border-slate-800">
+                                <button onclick="openModal('Student Analysis', 'Processes academic metrics to aggregate performance stats for classes.')" class="text-xs font-semibold text-sky-500 hover:underline flex items-center space-x-1">
+                                    <span>View Details</span>
+                                    <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+                                </button>
+                                <span class="text-xs text-slate-400 italic">[GitHub Link]</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 5 -->
+                <div class="project-card systems python glass-card rounded-3xl overflow-hidden shadow-lg flex flex-col hover:-translate-y-1.5 transition-all duration-300">
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="px-2.5 py-1 rounded-md bg-amber-500/10 text-amber-500 text-xs font-bold">Systems</span>
+                                <i data-lucide="shopping-cart" class="w-5 h-5 text-slate-400"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">Store Management System</h3>
+                            <p class="text-slate-600 dark:text-slate-300 text-sm mb-4 leading-relaxed">
+                                A simple project involving inventory items, tracking sales, stock quantities, and calculating total revenue.
+                            </p>
+                        </div>
+                        <div>
+                            <div class="flex flex-wrap gap-1.5 mb-6">
+                                <span class="px-2 py-0.5 bg-slate-200/60 dark:bg-slate-800 text-slate-600 dark:text-slate-400 text-[11px] rounded font-medium">Python</span>
+                                <span class="px-2 py-0.5 bg-slate-200/60 dark:bg-slate-800 text-slate-600 dark:text-slate-400 text-[11px] rounded font-medium">Inventory Logic</span>
+                            </div>
+                            <div class="flex items-center justify-between pt-4 border-t border-slate-200 dark:border-slate-800">
+                                <button onclick="openModal('Store Management System', 'Monitors stock levels, calculates daily earnings, and logs inventory transactions.')" class="text-xs font-semibold text-sky-500 hover:underline flex items-center space-x-1">
+                                    <span>View Details</span>
+                                    <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+                                </button>
+                                <span class="text-xs text-slate-400 italic">[GitHub Link]</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project Placeholder -->
+                <div class="project-card python systems glass-card rounded-3xl overflow-hidden border-2 border-dashed border-slate-300 dark:border-slate-800 flex flex-col justify-center items-center p-8 text-center">
+                    <div class="w-12 h-12 rounded-full bg-slate-200 dark:bg-slate-800 flex items-center justify-center text-slate-400 mb-4">
+                        <i data-lucide="plus" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-800 dark:text-white mb-1">More Projects Coming Soon</h3>
+                    <p class="text-xs text-slate-500 mb-4">Continuously learning and creating new projects.</p>
+                    <span class="text-xs bg-sky-500/10 text-sky-500 px-3 py-1 rounded-full font-medium">[ + Add Your Project ]</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Things I Love About Technology -->
+    <section id="tech-interests" class="py-20 bg-slate-100/50 dark:bg-slate-900/40 border-y border-slate-200 dark:border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight mb-4">
+                    Things I Love About Technology ⚡
+                </h2>
+                <p class="text-slate-600 dark:text-slate-300">
+                    Exploring fields that inspire my engineering mindset and technological curiosity.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Tech Card 1 -->
+                <div class="relative rounded-3xl overflow-hidden h-64 group shadow-md">
+                    <img src="https://images.unsplash.com/photo-1677442136019-21780efad99a?q=80&w=600&auto=format&fit=crop" alt="Artificial Intelligence" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" onerror="this.src='https://placehold.co/600x400/0f172a/0ea5e9?text=AI';">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent flex flex-col justify-end p-6">
+                        <h3 class="text-xl font-bold text-white mb-1">Artificial Intelligence</h3>
+                        <p class="text-xs text-slate-300">Smart algorithms and modern machine cognition.</p>
+                    </div>
+                </div>
+
+                <!-- Tech Card 2 -->
+                <div class="relative rounded-3xl overflow-hidden h-64 group shadow-md">
+                    <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=600&auto=format&fit=crop" alt="Programming" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" onerror="this.src='https://placehold.co/600x400/0f172a/0ea5e9?text=Programming';">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent flex flex-col justify-end p-6">
+                        <h3 class="text-xl font-bold text-white mb-1">Programming</h3>
+                        <p class="text-xs text-slate-300">Turning logic into functional software solutions.</p>
+                    </div>
+                </div>
+
+                <!-- Tech Card 3 -->
+                <div class="relative rounded-3xl overflow-hidden h-64 group shadow-md">
+                    <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=600&auto=format&fit=crop" alt="Microprocessors" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" onerror="this.src='https://placehold.co/600x400/0f172a/0ea5e9?text=Microprocessors';">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent flex flex-col justify-end p-6">
+                        <h3 class="text-xl font-bold text-white mb-1">Microprocessors</h3>
+                        <p class="text-xs text-slate-300">Silicon chips driving computation everywhere.</p>
+                    </div>
+                </div>
+
+                <!-- Tech Card 4 -->
+                <div class="relative rounded-3xl overflow-hidden h-64 group shadow-md">
+                    <img src="https://images.unsplash.com/photo-1608564697071-ddf911d81370?q=80&w=600&auto=format&fit=crop" alt="Electronics" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" onerror="this.src='https://placehold.co/600x400/0f172a/0ea5e9?text=Electronics';">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent flex flex-col justify-end p-6">
+                        <h3 class="text-xl font-bold text-white mb-1">Electronics</h3>
+                        <p class="text-xs text-slate-300">Circuit design, signals, and board layouts.</p>
+                    </div>
+                </div>
+
+                <!-- Tech Card 5 -->
+                <div class="relative rounded-3xl overflow-hidden h-64 group shadow-md">
+                    <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=600&auto=format&fit=crop" alt="Robotics" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" onerror="this.src='https://placehold.co/600x400/0f172a/0ea5e9?text=Robotics';">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent flex flex-col justify-end p-6">
+                        <h3 class="text-xl font-bold text-white mb-1">Robotics</h3>
+                        <p class="text-xs text-slate-300">Automated electro-mechanical systems.</p>
+                    </div>
+                </div>
+
+                <!-- Tech Card 6 -->
+                <div class="relative rounded-3xl overflow-hidden h-64 group shadow-md">
+                    <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?q=80&w=600&auto=format&fit=crop" alt="Control Systems & Instrumentation" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" onerror="this.src='https://placehold.co/600x400/0f172a/0ea5e9?text=Control+Systems';">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent flex flex-col justify-end p-6">
+                        <h3 class="text-xl font-bold text-white mb-1">Control Systems & Instrumentation</h3>
+                        <p class="text-xs text-slate-300">Precision monitoring, sensors, and loops.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Agriculture & Research Section -->
+    <section id="agriculture" class="py-20 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <div class="lg:col-span-6 space-y-6">
+                    <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-emerald-100 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 text-xs font-semibold">
+                        <i data-lucide="sprout" class="w-4 h-4"></i>
+                        <span>Practical Science</span>
+                    </div>
+
+                    <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight">
+                        Agriculture & <span class="text-gradient-green">Research</span> 🌱
+                    </h2>
+
+                    <p class="text-slate-600 dark:text-slate-300 leading-relaxed text-base sm:text-lg">
+                        Alongside hardware and software engineering, I am passionate about agriculture and applying practical scientific research to improve plant growth and agricultural productivity.
+                    </p>
+
+                    <div class="grid grid-cols-2 gap-3 text-xs sm:text-sm">
+                        <div class="p-3.5 rounded-xl glass-card flex items-center space-x-2">
+                            <i data-lucide="leaf" class="w-4 h-4 text-emerald-500"></i>
+                            <span>Plant Growth Study</span>
+                        </div>
+                        <div class="p-3.5 rounded-xl glass-card flex items-center space-x-2">
+                            <i data-lucide="sun" class="w-4 h-4 text-amber-500"></i>
+                            <span>Crop Production</span>
+                        </div>
+                        <div class="p-3.5 rounded-xl glass-card flex items-center space-x-2">
+                            <i data-lucide="flask-conical" class="w-4 h-4 text-sky-500"></i>
+                            <span>Germination Experiments</span>
+                        </div>
+                        <div class="p-3.5 rounded-xl glass-card flex items-center space-x-2">
+                            <i data-lucide="line-chart" class="w-4 h-4 text-violet-500"></i>
+                            <span>Agricultural Data Analysis</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-6">
+                    <div class="relative rounded-3xl overflow-hidden glass-card p-3 shadow-xl">
+                        <div class="relative aspect-video rounded-2xl overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?q=80&w=800&auto=format&fit=crop" 
+                                 alt="Agricultural Research and Plant Growth" 
+                                 class="w-full h-full object-cover"
+                                 onerror="this.src='https://placehold.co/800x450/0f172a/10b981?text=Agriculture+Research';">
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent"></div>
+                            <div class="absolute bottom-4 left-4 right-4 text-white">
+                                <p class="text-sm font-semibold">Smart Agriculture & Sensor Technology</p>
+                                <p class="text-xs text-slate-300">Combining instrumentation with plant research for sustainable futures.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Faith & Values Section -->
+    <section id="faith" class="py-20 bg-slate-100/50 dark:bg-slate-900/40 border-y border-slate-200 dark:border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-amber-100 dark:bg-amber-950/60 text-amber-600 dark:text-amber-400 text-xs font-semibold mb-3">
+                    <i data-lucide="heart" class="w-4 h-4"></i>
+                    <span>Personal Foundations</span>
+                </div>
+                <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight">
+                    Faith & <span class="text-gradient">Values</span> 🙏
+                </h2>
+                <p class="text-slate-600 dark:text-slate-300 mt-2">
+                    Faith is an important part of my personal life, providing purpose, guidance, and resilience.
+                </p>
+            </div>
+
+            <div class="max-w-4xl mx-auto">
+                <div class="p-8 rounded-3xl glass-card shadow-lg text-center space-y-8">
+                    <!-- Core Values Tags -->
+                    <div class="flex flex-wrap justify-center gap-3">
+                        <span class="px-4 py-2 rounded-xl bg-sky-500/10 text-sky-600 dark:text-sky-400 font-bold text-sm">Faith</span>
+                        <span class="px-4 py-2 rounded-xl bg-violet-500/10 text-violet-600 dark:text-violet-400 font-bold text-sm">Gratitude</span>
+                        <span class="px-4 py-2 rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 font-bold text-sm">Integrity</span>
+                        <span class="px-4 py-2 rounded-xl bg-rose-500/10 text-rose-600 dark:text-rose-400 font-bold text-sm">Love</span>
+                        <span class="px-4 py-2 rounded-xl bg-amber-500/10 text-amber-600 dark:text-amber-400 font-bold text-sm">Service</span>
+                        <span class="px-4 py-2 rounded-xl bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 font-bold text-sm">Perseverance</span>
+                        <span class="px-4 py-2 rounded-xl bg-teal-500/10 text-teal-600 dark:text-teal-400 font-bold text-sm">Hope</span>
+                        <span class="px-4 py-2 rounded-xl bg-sky-500/10 text-sky-600 dark:text-sky-400 font-bold text-sm">Personal Growth</span>
+                    </div>
+
+                    <!-- Editable Bible Verse Card -->
+                    <div class="p-6 rounded-2xl bg-amber-500/5 border border-amber-500/20 text-slate-700 dark:text-slate-200 italic space-y-2">
+                        <i data-lucide="book-open" class="w-6 h-6 text-amber-500 mx-auto mb-2"></i>
+                        <p class="text-base sm:text-lg">
+                            <span class="bg-amber-100 dark:bg-amber-950/70 px-3 py-1 rounded font-normal text-amber-900 dark:text-amber-200">
+                                "[Add Your Favorite Bible Verse Here]"
+                            </span>
+                        </p>
+                        <span class="text-xs text-slate-400 uppercase tracking-widest block font-sans">Editable Scriptural Reflection</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- My Future Goals & Roadmap -->
+    <section id="goals" class="py-20 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight mb-4">
+                    My Future Goals & Roadmap 🚀
+                </h2>
+                <p class="text-slate-600 dark:text-slate-300">
+                    A visual progression from where I am today towards my long-term aspirations.
+                </p>
+            </div>
+
+            <!-- Present -> Growth -> Future Roadmap -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+                <!-- Step 1: Present -->
+                <div class="p-6 rounded-3xl glass-card relative border-t-4 border-t-sky-500">
+                    <span class="text-xs font-bold text-sky-500 uppercase tracking-wider block mb-2">Stage 1</span>
+                    <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Present</h3>
+                    <ul class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 space-y-2">
+                        <li class="flex items-start space-x-2"><i data-lucide="check" class="w-4 h-4 text-sky-500 shrink-0 mt-0.5"></i><span>University Studies</span></li>
+                        <li class="flex items-start space-x-2"><i data-lucide="check" class="w-4 h-4 text-sky-500 shrink-0 mt-0.5"></i><span>Learning Python & Rust</span></li>
+                        <li class="flex items-start space-x-2"><i data-lucide="check" class="w-4 h-4 text-sky-500 shrink-0 mt-0.5"></i><span>Microprocessors Basics</span></li>
+                    </ul>
+                </div>
+
+                <!-- Step 2: Growth -->
+                <div class="p-6 rounded-3xl glass-card relative border-t-4 border-t-violet-500">
+                    <span class="text-xs font-bold text-violet-500 uppercase tracking-wider block mb-2">Stage 2</span>
+                    <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Growth</h3>
+                    <ul class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 space-y-2">
+                        <li class="flex items-start space-x-2"><i data-lucide="arrow-right" class="w-4 h-4 text-violet-500 shrink-0 mt-0.5"></i><span>Practical Technology Projects</span></li>
+                        <li class="flex items-start space-x-2"><i data-lucide="arrow-right" class="w-4 h-4 text-violet-500 shrink-0 mt-0.5"></i><span>Control & Instrumentation</span></li>
+                        <li class="flex items-start space-x-2"><i data-lucide="arrow-right" class="w-4 h-4 text-violet-500 shrink-0 mt-0.5"></i><span>Practical Engineering Work</span></li>
+                    </ul>
+                </div>
+
+                <!-- Step 3: Future -->
+                <div class="p-6 rounded-3xl glass-card relative border-t-4 border-t-emerald-500">
+                    <span class="text-xs font-bold text-emerald-500 uppercase tracking-wider block mb-2">Stage 3</span>
+                    <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Future</h3>
+                    <ul class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 space-y-2">
+                        <li class="flex items-start space-x-2"><i data-lucide="sparkles" class="w-4 h-4 text-emerald-500 shrink-0 mt-0.5"></i><span>Meaningful Career</span></li>
+                        <li class="flex items-start space-x-2"><i data-lucide="sparkles" class="w-4 h-4 text-emerald-500 shrink-0 mt-0.5"></i><span>Innovating Useful Solutions</span></li>
+                        <li class="flex items-start space-x-2"><i data-lucide="sparkles" class="w-4 h-4 text-emerald-500 shrink-0 mt-0.5"></i><span>Academic & Personal Growth</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Personal Personality Traits -->
+            <div class="p-8 rounded-3xl glass-card">
+                <h3 class="text-2xl font-bold mb-6 text-center text-slate-900 dark:text-white">A Little More About Me</h3>
+                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 text-center">
+                    <div class="p-4 rounded-2xl bg-slate-100 dark:bg-slate-900">
+                        <p class="font-bold text-sky-500 text-sm">Curious</p>
+                        <p class="text-[11px] text-slate-500 mt-1">Discovering how things work.</p>
+                    </div>
+                    <div class="p-4 rounded-2xl bg-slate-100 dark:bg-slate-900">
+                        <p class="font-bold text-violet-500 text-sm">Creative</p>
+                        <p class="text-[11px] text-slate-500 mt-1">Trying new ideas.</p>
+                    </div>
+                    <div class="p-4 rounded-2xl bg-slate-100 dark:bg-slate-900">
+                        <p class="font-bold text-emerald-500 text-sm">Learner</p>
+                        <p class="text-[11px] text-slate-500 mt-1">Always absorbing concepts.</p>
+                    </div>
+                    <div class="p-4 rounded-2xl bg-slate-100 dark:bg-slate-900">
+                        <p class="font-bold text-amber-500 text-sm">Persistent</p>
+                        <p class="text-[11px] text-slate-500 mt-1">Improving through practice.</p>
+                    </div>
+                    <div class="p-4 rounded-2xl bg-slate-100 dark:bg-slate-900">
+                        <p class="font-bold text-rose-500 text-sm">Tech-Minded</p>
+                        <p class="text-[11px] text-slate-500 mt-1">Following innovations.</p>
+                    </div>
+                    <div class="p-4 rounded-2xl bg-slate-100 dark:bg-slate-900">
+                        <p class="font-bold text-teal-500 text-sm">Goal-Oriented</p>
+                        <p class="text-[11px] text-slate-500 mt-1">Building a solid future.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-slate-100/50 dark:bg-slate-900/40 border-t border-slate-200 dark:border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight mb-4">
+                    Let's Connect 🤝
+                </h2>
+                <p class="text-slate-600 dark:text-slate-300">
+                    “I’m always interested in learning, discovering new ideas, connecting with people, and exploring opportunities related to technology and personal growth.”
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+                <!-- Contact Placeholders Info -->
+                <div class="lg:col-span-5 space-y-6">
+                    <div class="p-6 rounded-3xl glass-card space-y-4">
+                        <h3 class="font-bold text-lg text-slate-900 dark:text-white">Contact Information</h3>
+                        <p class="text-xs text-slate-500">Official detail placeholders for Dorine:</p>
+
+                        <div class="flex items-center space-x-3 text-sm">
+                            <div class="p-2.5 rounded-xl bg-sky-500/10 text-sky-500"><i data-lucide="mail" class="w-5 h-5"></i></div>
+                            <div>
+                                <span class="text-xs text-slate-400 block">Email</span>
+                                <span class="bg-amber-100 dark:bg-amber-950/60 px-2 py-0.5 rounded text-xs font-mono text-amber-800 dark:text-amber-300">[Add Your Email Address]</span>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center space-x-3 text-sm">
+                            <div class="p-2.5 rounded-xl bg-emerald-500/10 text-emerald-500"><i data-lucide="phone" class="w-5 h-5"></i></div>
+                            <div>
+                                <span class="text-xs text-slate-400 block">Phone</span>
+                                <span class="bg-amber-100 dark:bg-amber-950/60 px-2 py-0.5 rounded text-xs font-mono text-amber-800 dark:text-amber-300">[Add Phone Number]</span>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center space-x-3 text-sm">
+                            <div class="p-2.5 rounded-xl bg-blue-500/10 text-blue-500"><i data-lucide="linkedin" class="w-5 h-5"></i></div>
+                            <div>
+                                <span class="text-xs text-slate-400 block">LinkedIn</span>
+                                <span class="bg-amber-100 dark:bg-amber-950/60 px-2 py-0.5 rounded text-xs font-mono text-amber-800 dark:text-amber-300">[Add LinkedIn Profile]</span>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center space-x-3 text-sm">
+                            <div class="p-2.5 rounded-xl bg-slate-500/10 text-slate-500"><i data-lucide="github" class="w-5 h-5"></i></div>
+                            <div>
+                                <span class="text-xs text-slate-400 block">GitHub</span>
+                                <span class="bg-amber-100 dark:bg-amber-950/60 px-2 py-0.5 rounded text-xs font-mono text-amber-800 dark:text-amber-300">[Add GitHub Username]</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="lg:col-span-7">
+                    <form id="contactForm" onsubmit="handleFormSubmit(event)" class="p-8 rounded-3xl glass-card space-y-4">
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-slate-500 mb-1">Your Name</label>
+                            <input type="text" required placeholder="Enter your name" class="w-full px-4 py-3 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-800 focus:outline-none focus:ring-2 focus:ring-sky-500 text-sm">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-slate-500 mb-1">Your Email</label>
+                            <input type="email" required placeholder="Enter your email" class="w-full px-4 py-3 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-800 focus:outline-none focus:ring-2 focus:ring-sky-500 text-sm">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-slate-500 mb-1">Message</label>
+                            <textarea rows="4" required placeholder="Write your message here..." class="w-full px-4 py-3 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-800 focus:outline-none focus:ring-2 focus:ring-sky-500 text-sm"></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full py-3.5 rounded-xl bg-sky-500 hover:bg-sky-600 text-white font-bold transition-all shadow-lg shadow-sky-500/25 flex items-center justify-center space-x-2">
+                            <span>Send Message</span>
+                            <i data-lucide="send" class="w-4 h-4"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-10 bg-slate-900 text-slate-400 border-t border-slate-800 text-xs">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div>
+                <p>© 2026 Dorine. All Rights Reserved.</p>
+                <p class="text-[11px] text-slate-500 mt-1">Microprocessor Technology, Control & Instrumentation Student | Kenya 🇰🇪</p>
+            </div>
+
+            <!-- Footer Nav Links -->
+            <div class="flex flex-wrap justify-center gap-4 text-slate-300">
+                <a href="#home" class="hover:text-sky-400">Home</a>
+                <a href="#about" class="hover:text-sky-400">About</a>
+                <a href="#education" class="hover:text-sky-400">Education</a>
+                <a href="#tech-journey" class="hover:text-sky-400">Technology</a>
+                <a href="#projects" class="hover:text-sky-400">Projects</a>
+                <a href="#hobbies" class="hover:text-sky-400">Hobbies</a>
+                <a href="#goals" class="hover:text-sky-400">Goals</a>
+                <a href="#contact" class="hover:text-sky-400">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" aria-label="Back to Top" class="fixed bottom-6 right-6 z-40 p-3 rounded-2xl bg-sky-500 text-white shadow-xl opacity-0 pointer-events-none transition-all duration-300 hover:scale-110">
+        <i data-lucide="arrow-up" class="w-5 h-5"></i>
+    </button>
+
+    <!-- Generic Modal Dialog -->
+    <div id="projectModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300">
+        <div class="bg-white dark:bg-slate-900 p-6 sm:p-8 rounded-3xl max-w-lg w-full glass-card shadow-2xl relative">
+            <button onclick="closeModal()" aria-label="Close modal" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 dark:hover:text-white">
+                <i data-lucide="x" class="w-6 h-6"></i>
+            </button>
+            <h3 id="modalTitle" class="text-2xl font-bold text-slate-900 dark:text-white mb-3">Project Title</h3>
+            <p id="modalDesc" class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-6">Project details details here...</p>
+            <div class="flex justify-end">
+                <button onclick="closeModal()" class="px-5 py-2.5 bg-sky-500 text-white font-semibold rounded-xl text-xs">Close Preview</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Loader Dismissal
+        window.addEventListener('load', () => {
+            const loader = document.getElementById('loader');
+            loader.classList.add('opacity-0');
+            setTimeout(() => loader.style.display = 'none', 500);
+        });
+
+        // Theme Toggle Handler
+        const themeToggleBtn = document.getElementById('themeToggle');
+        themeToggleBtn.addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark');
+        });
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const menuIcon = document.getElementById('menuIcon');
+        const closeIcon = document.getElementById('closeIcon');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            menuIcon.classList.toggle('hidden');
+            closeIcon.classList.toggle('hidden');
+        });
+
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                menuIcon.classList.remove('hidden');
+                closeIcon.classList.add('hidden');
+            });
+        });
+
+        // Back To Top Scroll Logic
+        const backToTopBtn = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 400) {
+                backToTopBtn.classList.remove('opacity-0', 'pointer-events-none');
+            } else {
+                backToTopBtn.classList.add('opacity-0', 'pointer-events-none');
+            }
+        });
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Filterable Projects Logic
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const projectCards = document.querySelectorAll('.project-card');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => {
+                    b.classList.remove('bg-sky-500', 'text-white', 'shadow-md', 'shadow-sky-500/20');
+                    b.classList.add('bg-slate-200', 'dark:bg-slate-800', 'text-slate-700', 'dark:text-slate-300');
+                });
+                btn.classList.add('bg-sky-500', 'text-white', 'shadow-md', 'shadow-sky-500/20');
+                btn.classList.remove('bg-slate-200', 'dark:bg-slate-800', 'text-slate-700', 'dark:text-slate-300');
+
+                const filter = btn.getAttribute('data-filter');
+                projectCards.forEach(card => {
+                    if (filter === 'all' || card.classList.contains(filter)) {
+                        card.style.display = 'flex';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Modal Open / Close
+        const modal = document.getElementById('projectModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalDesc = document.getElementById('modalDesc');
+
+        function openModal(title, desc) {
+            modalTitle.textContent = title;
+            modalDesc.textContent = desc;
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+        }
+
+        function closeModal() {
+            modal.classList.add('opacity-0', 'pointer-events-none');
+        }
+
+        // Contact Form Mock Submit
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            alert('Thank you for reaching out, Dorine will get back to you soon!');
+            e.target.reset();
+        }
+
+        // Subtle Canvas Circuit Particles Animation
+        const canvas = document.getElementById('techCanvas');
+        const ctx = canvas.getContext('2d');
+        let width, height, particles;
+
+        function initCanvas() {
+            width = canvas.width = canvas.parentElement.clientWidth;
+            height = canvas.height = canvas.parentElement.clientHeight;
+            particles = [];
+            for (let i = 0; i < 35; i++) {
+                particles.push({
+                    x: Math.random() * width,
+                    y: Math.random() * height,
+                    vx: (Math.random() - 0.5) * 0.8,
+                    vy: (Math.random() - 0.5) * 0.8,
+                    size: Math.random() * 2 + 1
+                });
+            }
+        }
+
+        function animateCanvas() {
+            ctx.clearRect(0, 0, width, height);
+            ctx.fillStyle = '#0ea5e9';
+            ctx.strokeStyle = 'rgba(14, 165, 233, 0.15)';
+
+            for (let i = 0; i < particles.length; i++) {
+                let p = particles[i];
+                p.x += p.vx;
+                p.y += p.vy;
+
+                if (p.x < 0 || p.x > width) p.vx *= -1;
+                if (p.y < 0 || p.y > height) p.vy *= -1;
+
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                ctx.fill();
+
+                for (let j = i + 1; j < particles.length; j++) {
+                    let p2 = particles[j];
+                    let dist = Math.hypot(p.x - p2.x, p.y - p2.y);
+                    if (dist < 120) {
+                        ctx.beginPath();
+                        ctx.moveTo(p.x, p.y);
+                        ctx.lineTo(p2.x, p2.y);
+                        ctx.stroke();
+                    }
+                }
+            }
+            requestAnimationFrame(animateCanvas);
+        }
+
+        window.addEventListener('resize', initCanvas);
+        window.onload = function() {
+            initCanvas();
+            animateCanvas();
+        };
+    </script>
+</body>
+</html>
